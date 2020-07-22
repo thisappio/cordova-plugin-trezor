@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txt_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#79C018"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp"
+        android:drawablePadding="16dp"
+        android:gravity="left|center_vertical"
+        android:fontFamily="sans-serif-medium"
+        android:text="Please enter your PIN"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:clipChildren="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clipChildren="false">
+
+            <TextView
+                android:id="@+id/txt_text"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:minHeight="40dp"
+                android:textColor="#333333"
+                android:text="Note that the positions of numbers are shown on the device!"
+                />
+
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                >
+
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/button7"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+
+                    <ImageButton
+                        android:id="@+id/button8"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+
+                    <ImageButton
+                        android:id="@+id/button9"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/button4"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+
+                    <ImageButton
+                        android:id="@+id/button5"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+
+                    <ImageButton
+                        android:id="@+id/button6"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+                </TableRow>
+
+                <TableRow>
+
+                    <ImageButton
+                        android:id="@+id/button1"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+
+                    <ImageButton
+                        android:id="@+id/button2"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+
+                    <ImageButton
+                        android:id="@+id/button3"
+                        android:background="@drawable/btn_card_secondary"
+                        android:minWidth="48dp"
+                        android:minHeight="48dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_width="80dp"
+                        android:layout_height="48dp"
+                        android:layout_margin="4dp"
+                        android:src="@drawable/circle_pin" />
+                </TableRow>
+
+            </TableLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="11dp"
+                android:gravity="center_vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="8dp"
+                >
+
+                <TextView
+                    android:id="@+id/txt_pin_stars"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#333333"
+                    android:maxLength="9"
+                    android:textSize="36dp"
+                    android:inputType="numberPassword"
+                    android:gravity="center_vertical"
+                    android:freezesText="true"
+                    />
+
+                <ImageButton
+                    android:id="@+id/btn_backspace"
+                    android:background="@drawable/list_selector_holo_light"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary_selector"
+                    android:textStyle="normal"
+                    android:textAllCaps="false"
+                    android:layout_width="48dp"
+                    android:layout_height="42dp"
+                    android:src="@android:drawable/ic_input_delete"
+                    android:scaleType="center"
+                    android:tint="#333333"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

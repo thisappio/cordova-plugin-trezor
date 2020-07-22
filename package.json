@@ -1,0 +1,29 @@
+{
+    "name": "cordova-plugin-trezor",
+    "version": "0.1.0",
+    "description": "Cordova Trezor Plugin",
+    "types": "./types/index.d.ts",
+    "cordova": {
+        "id": "cordova-plugin-trezor",
+        "platforms": [
+            "android",
+            "browser"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thisappio/cordova-plugin-trezor"
+    },
+    "bugs": {
+        "url": "https://github.com/thisappio/cordova-plugin-trezor/issues"
+    },
+    "keywords": [
+        "cordova",
+        "device",
+        "ecosystem:cordova",
+        "cordova-android",
+        "cordova-browser"
+    ],
+    "author": "thisApp inc.",
+    "license": "Apache-2.0"
+}

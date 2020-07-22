@@ -1,0 +1,9 @@
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        implementation 'com.github.trezor.trezor-android:trezor-lib:v2.0.1'
+    }
+}

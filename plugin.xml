@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="cordova-plugin-trezor"
+        version="0.1.0">
+  <name>CordovaTrezor</name>
+
+  <description>Cordova Trezor Plugin</description>
+
+  <keywords>cordova,trezor</keywords>
+
+  <js-module src="www/trezor.js" name="cordovaTrezor">
+    <clobbers target="cordovaTrezor" />
+  </js-module>
+
+  <platform name="android">
+    <config-file target="config.xml" parent="/*">
+      <feature name="CordovaTrezor">
+        <param name="android-package" value="io.thisapp.cordova.plugin.CordovaTrezor"/>
+      </feature>
+    </config-file>
+
+    <framework src="src/android/plugin.gradle" custom="true" type="gradleReference"/>
+
+    <source-file src="src/android/CordovaTrezor.java" target-dir="src/io/thisapp/cordova/plugin"/>
+    <source-file src="src/android/io/nayuki/bitcoin/crypto/Base58Check.java" target-dir="src/io/nayuki/bitcoin/crypto"/>
+    <source-file src="src/android/io/nayuki/bitcoin/crypto/Sha256.java" target-dir="src/io/nayuki/bitcoin/crypto"/>
+    <source-file src="src/android/io/nayuki/bitcoin/crypto/Sha256Hash.java" target-dir="src/io/nayuki/bitcoin/crypto"/>
+    <source-file src="src/android/res/layout/enter_pin_dialog.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/layout/enter_passphrase_dialog.xml" target-dir="res/layout"/>
+    <source-file src="src/android/res/drawable/circle_pin.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/btn_card_secondary.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/btn_card_secondary_no_shadow.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/btn_card_secondary_normal.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/drawable/list_selector_holo_light.xml" target-dir="res/drawable"/>
+    <source-file src="src/android/res/color/text_primary_selector.xml" target-dir="res/color"/>
+  </platform>
+</plugin>
