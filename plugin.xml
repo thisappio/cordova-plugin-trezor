@@ -45,5 +45,8 @@
     <js-module src="src/browser/CordovaTrezorProxy.js" name="CordovaTrezorProxy">
       <runs />
     </js-module>
+    <js-module src="src/browser/trezor-connect.min.js" name="TrezorConnect">
+      <runs />
+    </js-module>
   </platform>
 </plugin>
