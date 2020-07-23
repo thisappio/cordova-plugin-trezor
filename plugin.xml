@@ -34,4 +34,16 @@
     <source-file src="src/android/res/drawable/list_selector_holo_light.xml" target-dir="res/drawable"/>
     <source-file src="src/android/res/color/text_primary_selector.xml" target-dir="res/color"/>
   </platform>
+
+  <platform name="browser">
+    <config-file target="config.xml" parent="/*">
+      <feature name="CordovaTrezor">
+        <param name="browser-package" value="CordovaTrezor" />
+      </feature>
+    </config-file>
+
+    <js-module src="src/browser/CordovaTrezorProxy.js" name="CordovaTrezorProxy">
+      <runs />
+    </js-module>
+  </platform>
 </plugin>

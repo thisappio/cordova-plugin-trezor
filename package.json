@@ -25,5 +25,8 @@
         "cordova-browser"
     ],
     "author": "thisApp inc.",
-    "license": "Apache-2.0"
+    "license": "Apache-2.0",
+    "dependencies": {
+        "trezor-connect": "^8.1.8"
+    }
 }
