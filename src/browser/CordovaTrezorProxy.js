@@ -1,4 +1,4 @@
-var TrezorConnect = require('trezor-connect').default;
+var TrezorConnect = require('cordova-plugin-trezor.TrezorConnect');
 
 function registerManifest(params) {
     TrezorConnect.manifest(params);
