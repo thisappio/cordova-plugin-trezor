@@ -1,5 +1,5 @@
 interface CordovaTrezor {
-    getPublicKeys(request: PublicKeyRequest, successCallback: (PublicKeyResponse) => void, errorCallback: (error?: any) => void);
+    getPublicKeys(request: PublicKeyRequest): Promise<PublicKeyResponse>;
 }
 
 interface PublicKeyRequest {
