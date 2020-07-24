@@ -4,14 +4,8 @@ function registerManifest(params) {
     TrezorConnect.manifest(params);
 }
 
-function getPublicKeys(params, success, error) {
-    console.log(params);
-    TrezorConnect.getPublicKey(params)
-        .then(success)
-        .catch((e) => {
-            error(e);
-            return Promise.reject();
-        });
+function getPublicKeys(success, error, params) {
+    TrezorConnect.getPublicKey(params[0]).then(success).catch(error);
 }
 
 module.exports = {
