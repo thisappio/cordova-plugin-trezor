@@ -1,7 +1,7 @@
 var TrezorConnect = require('cordova-plugin-trezor.TrezorConnect');
 
 function registerManifest(params) {
-    TrezorConnect.manifest(params);
+    TrezorConnect.manifest(params[0]);
 }
 
 function getPublicKeys(success, error, params) {

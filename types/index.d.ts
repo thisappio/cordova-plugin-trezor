@@ -1,5 +1,6 @@
 interface CordovaTrezor {
     getPublicKeys(request: PublicKeyRequest): Promise<PublicKeyResponse>;
+    manifest(request: Manifest): void;
 }
 
 interface PublicKeyRequest {
@@ -24,6 +25,11 @@ interface PublicKey {
     fingerprint: number;
     depth: number;
     xpubSegwit?: string;
+}
+
+interface Manifest {
+    email: string;
+    appUrl: string;
 }
 
 declare var cordovaTrezor: CordovaTrezor;
