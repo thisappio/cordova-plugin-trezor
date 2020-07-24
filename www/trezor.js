@@ -1,6 +1,6 @@
 function CordovaTrezor() { };
 
-CordovaTrezor.prototype._getHDPath = (path) => {
+const _getHDPath = (path) => {
     const parts = path.toLowerCase().split('/');
     if (parts[0] !== 'm') throw 'Not a valid path';
     return parts.filter((p) => p !== 'm' && p !== '')
@@ -23,8 +23,8 @@ CordovaTrezor.prototype._getHDPath = (path) => {
         });
 };
 
-CordovaTrezor.prototype._convertPathToArray = (path) => {
-    let valid = getHDPath(path);
+const _convertPathToArray = (path) => {
+    let valid = _getHDPath(path);
     if (!valid) throw 'Not a valid path';
     return valid;
 };
@@ -32,7 +32,7 @@ CordovaTrezor.prototype._convertPathToArray = (path) => {
 CordovaTrezor.prototype.getPublicKeys = function (request) {
     let paths = request;
     if (cordova.platformId === 'android') {
-        paths = { paths: request.bundle.map(p => this._convertPathToArray(p.path)) };
+        paths = { paths: request.bundle.map(p => _convertPathToArray(p.path)) };
     }
 
     return new Promise((resolve, reject) => {
