@@ -51,9 +51,9 @@ public class CordovaTrezor extends CordovaPlugin {
     private TrezorManager.UsbPermissionReceiver usbPermissionReceiver = new TrezorManager.UsbPermissionReceiver() {
         @Override
         public void onUsbPermissionResult(boolean granted) {
-            initialize();
-
             if (granted) {
+                initialize();
+
                 switch (action) {
                     case "getPublicKeys": {
                         getPublicKeys(payload);
@@ -94,7 +94,12 @@ public class CordovaTrezor extends CordovaPlugin {
             if (trezorManager.hasDeviceWithoutPermission(true)) {
                 trezorManager.requestDevicePermissionIfCan(true);
             } else {
-                initialize();
+                try {
+                    initialize();
+                } catch (Exception e) {
+                    sendErrorCallback("Device not connected!");
+                    return false;
+                }
                 getPublicKeys(payload);
             }
             return true;
@@ -336,6 +341,9 @@ public class CordovaTrezor extends CordovaPlugin {
     private void sendErrorCallback(String message) {
         try {
             trezorManager.sendMessage(Cancel.newBuilder().build());
+        } catch (Exception ignored) {}
+
+        try {
             JSONObject result = new JSONObject();
             result.put("success", false);
             result.put("payload", new JSONObject().put("error", message));
