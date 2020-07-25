@@ -1,6 +1,7 @@
 package io.thisapp.cordova.plugin;
 
 import android.app.AlertDialog;
+import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import io.cordova.hellocordova.R;
 import io.nayuki.bitcoin.crypto.Base58Check;
 
 interface OnPinListener {
@@ -48,6 +48,8 @@ public class CordovaTrezor extends CordovaPlugin {
     private Features features;
     private byte[] mainnetPrefixBytes = new byte[0];
     private byte[] testnetPrefixBytes = new byte[0];
+    private Resources r;
+    private String packageNme;
 
     private TrezorManager.UsbPermissionReceiver usbPermissionReceiver = new TrezorManager.UsbPermissionReceiver() {
         @Override
@@ -81,6 +83,8 @@ public class CordovaTrezor extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
+        r = cordova.getActivity().getResources();
+        packageNme = cordova.getActivity().getPackageName();
         this.action = action;
         this.callbackContext = callbackContext;
         if (action.equals("getPublicKeys")) {
@@ -229,7 +233,7 @@ public class CordovaTrezor extends CordovaPlugin {
         AlertDialog.Builder builder = new AlertDialog.Builder(cordova.getActivity());
         LayoutInflater inflater = cordova.getActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.enter_pin_dialog, null))
+        builder.setView(inflater.inflate(r.getIdentifier("enter_pin_dialog", "layout", packageNme), null))
             .setPositiveButton("Confirm", (dialog, id) -> {
                 positiveButtonClicked.set(true);
                 Message response = trezorManager.sendMessage(PinMatrixAck.newBuilder().setPin(pin).build());
@@ -251,17 +255,17 @@ public class CordovaTrezor extends CordovaPlugin {
             });
         AlertDialog pinDialog = builder.create();
         pinDialog.setOnShowListener(dialog -> {
-            TextView pinStars = pinDialog.findViewById(R.id.txt_pin_stars);
-            pinDialog.findViewById(R.id.button1).setOnClickListener(v -> updatePin(1, pinStars));
-            pinDialog.findViewById(R.id.button2).setOnClickListener(v -> updatePin(2, pinStars));
-            pinDialog.findViewById(R.id.button3).setOnClickListener(v -> updatePin(3, pinStars));
-            pinDialog.findViewById(R.id.button4).setOnClickListener(v -> updatePin(4, pinStars));
-            pinDialog.findViewById(R.id.button5).setOnClickListener(v -> updatePin(5, pinStars));
-            pinDialog.findViewById(R.id.button6).setOnClickListener(v -> updatePin(6, pinStars));
-            pinDialog.findViewById(R.id.button7).setOnClickListener(v -> updatePin(7, pinStars));
-            pinDialog.findViewById(R.id.button8).setOnClickListener(v -> updatePin(8, pinStars));
-            pinDialog.findViewById(R.id.button9).setOnClickListener(v -> updatePin(9, pinStars));
-            pinDialog.findViewById(R.id.btn_backspace).setOnClickListener(v -> updatePin(-1, pinStars));
+            TextView pinStars = pinDialog.findViewById(r.getIdentifier("txt_pin_stars", "id", packageNme));
+            pinDialog.findViewById(r.getIdentifier("button1", "id", packageNme)).setOnClickListener(v -> updatePin(1, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button2", "id", packageNme)).setOnClickListener(v -> updatePin(2, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button3", "id", packageNme)).setOnClickListener(v -> updatePin(3, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button4", "id", packageNme)).setOnClickListener(v -> updatePin(4, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button5", "id", packageNme)).setOnClickListener(v -> updatePin(5, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button6", "id", packageNme)).setOnClickListener(v -> updatePin(6, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button7", "id", packageNme)).setOnClickListener(v -> updatePin(7, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button8", "id", packageNme)).setOnClickListener(v -> updatePin(8, pinStars));
+            pinDialog.findViewById(r.getIdentifier("button9", "id", packageNme)).setOnClickListener(v -> updatePin(9, pinStars));
+            pinDialog.findViewById(r.getIdentifier("btn_backspace", "id", packageNme)).setOnClickListener(v -> updatePin(-1, pinStars));
         });
         pinDialog.show();
     }
@@ -283,7 +287,7 @@ public class CordovaTrezor extends CordovaPlugin {
         AlertDialog.Builder builder = new AlertDialog.Builder(cordova.getActivity());
         LayoutInflater inflater = cordova.getActivity().getLayoutInflater();
 
-        builder.setView(inflater.inflate(R.layout.enter_passphrase_dialog, null))
+        builder.setView(inflater.inflate(r.getIdentifier("enter_passphrase_dialog", "layout", packageNme), null))
                 .setPositiveButton("Confirm", (dialog, id) -> {
                     positiveButtonClicked.set(true);
                     Message passphraseMessage = trezorManager.sendMessage(PassphraseAck.newBuilder().setPassphrase(passphrase).build());
@@ -299,9 +303,9 @@ public class CordovaTrezor extends CordovaPlugin {
                 });
         AlertDialog passphraseDialog = builder.create();
         passphraseDialog.setOnShowListener(dialog -> {
-            TextView errorText = passphraseDialog.findViewById(R.id.passphrase_error_text);
-            EditText passphraseEditText = passphraseDialog.findViewById(R.id.passphrase);
-            EditText confirmEditText = passphraseDialog.findViewById(R.id.confirm_passphrase);
+            TextView errorText = passphraseDialog.findViewById(r.getIdentifier("passphrase_error_text", "id", packageNme));
+            EditText passphraseEditText = passphraseDialog.findViewById(r.getIdentifier("passphrase", "id", packageNme));
+            EditText confirmEditText = passphraseDialog.findViewById(r.getIdentifier("confirm_passphrase", "id", packageNme));
 
             TextWatcher textWatcher = new TextWatcher() {
                 @Override
