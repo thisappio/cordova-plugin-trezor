@@ -12,7 +12,7 @@ CordovaTrezor.prototype.manifest = function (request) {
         return;
     }
 
-    cordova.exec(resolve, reject, 'CordovaTrezor', 'manifest', [request]);
+    cordova.exec(undefined, undefined, 'CordovaTrezor', 'manifest', [request]);
 }
 
 module.exports = new CordovaTrezor();
