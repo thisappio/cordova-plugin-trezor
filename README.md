@@ -63,8 +63,10 @@ Refer to [types](types/index.d.ts) for inputs and outputs.
 
 ## Important Note
 
-The returned `path` array in Android is based on signed integer values and in browser it's based on unsigned 32 bit integer.
+- The returned `path` array in Android is based on signed integer values and in browser it's based on unsigned 32 bit integer.
 So they are logically the same but they are different in representations. You can rely on serialized path for comparison purposes.
+
+- TODO: The returned xpub value in "Android" should start with tpub for testnet and upub for bip49 testnet. But currently these are formatted as "xpub" and "ypub".
 
 ## Docs
 

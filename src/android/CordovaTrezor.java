@@ -195,7 +195,6 @@ public class CordovaTrezor extends CordovaPlugin {
         byte[] xpubBytes = Base58Check.base58ToBytes(xpub);
         xpubBytes = Arrays.copyOfRange(xpubBytes, 4, xpubBytes.length);
 
-
         byte[] ypubBytes = new byte[xpubBytes.length + 4];
         System.arraycopy(getPrefixBytes(xpub.startsWith("xpub")), 0, ypubBytes, 0, 4);
         System.arraycopy(xpubBytes, 0, ypubBytes, 4, xpubBytes.length);
