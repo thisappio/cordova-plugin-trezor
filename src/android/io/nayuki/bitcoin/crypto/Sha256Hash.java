@@ -1,7 +1,7 @@
-/* 
+/*
  * Bitcoin cryptography library
  * Copyright (c) Project Nayuki
- * 
+ *
  * https://www.nayuki.io/page/bitcoin-cryptography-library
  * https://github.com/nayuki/Bitcoin-Cryptography-Library
  */
@@ -21,25 +21,24 @@ import java.util.Objects;
  *   <li>Byte array: {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09,0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x18,0x19,0x20,0x21,0x22,0x23,0x24,0x25,0x26,0x27,0x28,0x29,0x30,0x31,0x32}.</li>
  *   <li>Hex string: "3231302928272625242322212019181716151413121110090807060504030201".</li>
  * <ul>
- * @see Sha256
  */
 public final class Sha256Hash implements Comparable<Sha256Hash> {
-	
+
 	/*---- Constants ----*/
-	
+
 	/** The number of bytes in each SHA-256 hash value. */
 	public static final int HASH_LENGTH = 32;
-	
-	
-	
+
+
+
 	/*---- Fields ----*/
-	
+
 	private final byte[] hash;
-	
-	
-	
+
+
+
 	/*---- Constructors ----*/
-	
+
 	/**
 	 * Constructs a SHA-256 hash object from the specified array of bytes.
 	 * The array must be 32 bytes long. All 2<sup>256</sup> possible values are valid.
@@ -53,8 +52,8 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 			throw new IllegalArgumentException();
 		hash = b.clone();
 	}
-	
-	
+
+
 	/**
 	 * Constructs a SHA-256 hash object from the specified hexadecimal string.
 	 * The string must be 64 characters long and entirely made up of hexadecimal digits.
@@ -70,11 +69,11 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 		for (int i = 0; i < hash.length; i++)
 			hash[hash.length - 1 - i] = (byte)Integer.parseInt(s.substring(i * 2, (i + 1) * 2), 16);
 	}
-	
-	
-	
+
+
+
 	/*---- Methods ----*/
-	
+
 	/**
 	 * Returns a new 32-byte array representing this hash value. Constant-time with respect to this hash value.
 	 * @return a byte array representing this hash
@@ -82,8 +81,8 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 	public byte[] toBytes() {
 		return hash.clone();
 	}
-	
-	
+
+
 	/**
 	 * Tests whether this hash is equal to the specified object. Returns {@code true} if and only if the
 	 * other object is a {@code Sha256Hash} object with the same byte array values. Not constant-time.
@@ -98,8 +97,8 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 		else
 			return Arrays.equals(hash, ((Sha256Hash)obj).hash);
 	}
-	
-	
+
+
 	/**
 	 * Returns the hash code of this object. Constant-time with respect to this hash value.
 	 * @return the hash code of this object
@@ -107,8 +106,8 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 	public int hashCode() {
 		return (hash[0] & 0xFF) | (hash[1] & 0xFF) << 8 | (hash[2] & 0xFF) << 16 | hash[3] << 24;
 	}
-	
-	
+
+
 	/**
 	 * Compares whether this hash is less than, equal to, or greater than the specified hash object. Not constant-time.
 	 * <p>The comparison is performed in byte-reversed order, which means the string representations are normally ordered.
@@ -125,8 +124,8 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 		}
 		return 0;
 	}
-	
-	
+
+
 	/**
 	 * Returns the hexadecimal string representation of this hash, in lowercase, 64 digits long.
 	 * Remember that the string is byte-reversed with respect to the byte array. Not constant-time.
@@ -138,5 +137,5 @@ public final class Sha256Hash implements Comparable<Sha256Hash> {
 			sb.append(String.format("%02x", hash[i]));
 		return sb.toString();
 	}
-	
+
 }
