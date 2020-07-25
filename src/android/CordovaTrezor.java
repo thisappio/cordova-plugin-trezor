@@ -19,6 +19,7 @@ import com.google.protobuf.Message;
 import com.satoshilabs.trezor.lib.TrezorManager;
 import com.satoshilabs.trezor.lib.protobuf.TrezorMessage.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -140,19 +141,21 @@ public class CordovaTrezor extends CordovaPlugin {
         JSONObject result = new JSONObject();
 
         try {
-            JSONArray pathsArray = paths.getJSONArray("paths");
+            JSONArray pathsArray = paths.getJSONArray("bundle");
             JSONArray publicKeys = new JSONArray();
             for (int i = 0; i < pathsArray.length(); i++) {
-                JSONArray path = pathsArray.getJSONArray(i);
+                JSONObject pathObject = pathsArray.getJSONObject(i);
+                String serializedPath = pathObject.getString("path");
+                Integer[] pathInt = convertPathToArray(serializedPath);
                 GetPublicKey.Builder messageBuilder = GetPublicKey.newBuilder();
 
-                for (int j = 0; j < path.length(); j++) {
-                    messageBuilder.addAddressN((int) path.getLong(j));
+                for (Integer p : pathInt) {
+                    messageBuilder.addAddressN(p);
                 }
 
                 Message response = trezorManager.sendMessage(messageBuilder.build());
                 PublicKey parsedMessage = PublicKey.parseFrom(response.toByteArray());
-                publicKeys.put(transformPublicKey(parsedMessage, path));
+                publicKeys.put(transformPublicKey(parsedMessage, serializedPath, pathInt));
             }
             result.put("success", true);
             result.put("payload", publicKeys);
@@ -164,16 +167,21 @@ public class CordovaTrezor extends CordovaPlugin {
         return result;
     }
 
-    private JSONObject transformPublicKey(PublicKey publicKey, JSONArray path) throws JSONException {
+    private JSONObject transformPublicKey(PublicKey publicKey, String serializedPath, Integer[] path) throws JSONException {
+        JSONArray pathJson = new JSONArray();
+        for (Integer p : path) {
+            pathJson.put(p);
+        }
         JSONObject jsonPublicKey = new JSONObject()
-                .put("path", path)
+                .put("path", pathJson)
+                .put("serializedPath", serializedPath)
                 .put("xpub", publicKey.getXpub())
                 .put("chainCode" , byteStringToHexString(publicKey.getNode().getChainCode()))
                 .put("childNum", publicKey.getNode().getChildNum())
                 .put("publicKey", byteStringToHexString(publicKey.getNode().getPublicKey()))
                 .put("fingerprint", publicKey.getNode().getFingerprint())
                 .put("depth", publicKey.getNode().getDepth());
-        if ((path.length() > 0) && (path.getLong(0) == 2147483697L)) {
+        if ((path.length > 0) && (path[0] == -2147483599L)) {
             jsonPublicKey.put("xpubSegwit", convertXpubToYpub(publicKey.getXpub()));
         }
         return jsonPublicKey;
@@ -336,6 +344,38 @@ public class CordovaTrezor extends CordovaPlugin {
             result.append(hex);
         }
         return result.toString();
+    }
+
+    private Integer[] getHDPath(String path) throws Exception {
+        String[] parts = path.toLowerCase().split("/");
+        if (!parts[0].equals("m")) throw new Exception("Not a valid path");
+        ArrayList<Integer> normalizedPath = new ArrayList<>();
+        for (String part : parts) {
+            if (!part.equals("m") && !part.equals("")) {
+                boolean hardened = false;
+                if (part.substring(part.length() - 1).equals("'")) {
+                    hardened = true;
+                    part = part.substring(0, part.length() - 1);
+                }
+                int n = Integer.parseInt(part);
+                if (n < 0) {
+                    throw new Exception("Path cannot contain negative values");
+                }
+                if (hardened) {
+                    n = n | 0x80000000;
+                }
+                normalizedPath.add(n);
+            }
+        }
+        return normalizedPath.toArray(new Integer[0]);
+    }
+
+    private Integer[] convertPathToArray(String path) throws Exception {
+        try {
+            return getHDPath(path);
+        } catch (Exception e) {
+            throw new Exception("Not a valid path");
+        }
     }
 
     private void sendErrorCallback(String message) {

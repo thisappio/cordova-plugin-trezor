@@ -1,23 +1,24 @@
-interface CordovaTrezor {
+export interface CordovaTrezor {
     getPublicKeys(request: PublicKeyRequest): Promise<PublicKeyResponse>;
     manifest(request: Manifest): void;
 }
 
-interface PublicKeyRequest {
+export interface PublicKeyRequest {
     bundle: { path: string }[];
 }
 
-interface PublicKeyResponse {
+export interface PublicKeyResponse {
     success: boolean;
     payload: PublicKey[] | ErrorPayload;
 }
 
-interface ErrorPayload {
+export interface ErrorPayload {
     error: string;
 }
 
-interface PublicKey {
+export interface PublicKey {
     path: number[];
+    serializedPath: string;
     xpub: string;
     chainCode: string;
     childNum: number;
@@ -27,7 +28,7 @@ interface PublicKey {
     xpubSegwit?: string;
 }
 
-interface Manifest {
+export interface Manifest {
     email: string;
     appUrl: string;
 }

@@ -5,7 +5,9 @@ description: Communicate with Trezor on Android and Browser.
 
 # cordova-plugin-trezor
 
-This plugin allows your cordova app to communicate with a Trezor device using a single API on browser and Android (Only for devices with OTG). The browser implementation uses the latest `trezor-connect` minified bundle and the Android implementation uses `trezor-android`. Unfortunately there is no trezor API for iOS.
+This plugin allows your cordova app to communicate with a Trezor device using a single API on browser and Android
+(Only for devices with OTG). The browser implementation uses the latest `trezor-connect` minified bundle and the Android
+implementation uses `trezor-android`. Unfortunately there is no trezor API for iOS.
 
 cordova-trezor-plugin registers itself as `cordovaTrezor` in window.
 Although the object is in the global scope, it is not available until after the `deviceready` event.
@@ -43,7 +45,9 @@ PRs are welcome for more api implementations.
 
 ## manifest
 
-Calling this method before any access to the device is required on browser by [trezor-connect](https://github.com/trezor/connect/blob/develop/docs/index.md#trezor-connect-manifest); This method has no effect on Android.
+Calling this method before any access to the device is required on browser by
+[trezor-connect](https://github.com/trezor/connect/blob/develop/docs/index.md#trezor-connect-manifest);
+This method has no effect on Android.
 
 Refer to [types](types/index.d.ts) for inputs and outputs.
 
@@ -61,3 +65,8 @@ Refer to [types](types/index.d.ts) for inputs and outputs.
 
 - Browser
 - Android
+
+## Important Note
+
+The returned `path` array in Android is based on signed integer values and in browser it's based on unsigned 32 bit integer.
+So they are logically the same but they are different in representations. You can rely on serialized path for comparison purposes.
