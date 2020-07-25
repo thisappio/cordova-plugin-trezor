@@ -1,8 +1,3 @@
----
-title: Trezor Plugin
-description: Communicate with Trezor on Android and Browser.
----
-
 # cordova-plugin-trezor
 
 This plugin allows your cordova app to communicate with a Trezor device using a single API on browser and Android
@@ -70,3 +65,7 @@ Refer to [types](types/index.d.ts) for inputs and outputs.
 
 The returned `path` array in Android is based on signed integer values and in browser it's based on unsigned 32 bit integer.
 So they are logically the same but they are different in representations. You can rely on serialized path for comparison purposes.
+
+## Docs
+
+For more info about how Android implementation works you can refer to [draw.io diagram](trezor-flow.drawio)
