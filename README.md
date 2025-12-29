@@ -1,3 +1,6 @@
+> [!WARNING]
+> The project is deprecated due to the deprecation of trezor-android and introduction of "connect-mobile" which is a js library and shares almost the same API with "connect-web" through deeplinking. If you use "connect-web" and "connect-mobile" together in your app, you can support Web, Android and iOS.
+
 # cordova-plugin-trezor
 
 This plugin allows your cordova app to communicate with a Trezor device using a single API on browser and Android
